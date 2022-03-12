@@ -2,7 +2,7 @@ import { GET_MOVIES } from "../Actions/types";
 
 
 const initialState = {
-  movies: []
+
 };
 
 
