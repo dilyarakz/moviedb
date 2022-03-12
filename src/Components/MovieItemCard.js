@@ -26,7 +26,7 @@ const defaultProps = {};
 const MovieItemCard = (props) => {
 
   if (!(typeof props.movie === "undefined")) {
-    console.log(props.movie.id)
+    // console.log(props.movie.id)
 
     const property = {
       imageUrl: `https://image.tmdb.org/t/p/w300${props.movie.poster_path}`,

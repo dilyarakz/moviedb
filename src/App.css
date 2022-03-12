@@ -12,8 +12,8 @@
 
 .pagination a {
   padding: 10px;
-  border: 1px solid #47a7de;
-  color: #47a7de;
+  border: 1px solid #272727;
+  color: #14A76C;
 }
 
 .pagination__link{
@@ -21,8 +21,8 @@
 }
 
 .pagination__link--active a{
-  color: #fff;
-  background: #47a7de;
+  color: #14A76C;
+  background: #272727;
 }
 
 .pagination__link--disabled a {
