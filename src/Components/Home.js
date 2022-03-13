@@ -12,8 +12,8 @@ import {
   Center,
   VStack
 } from '@chakra-ui/react'
-import { getMovies, searchMovies } from '../Actions/MoviesServer';
-import { connect } from "react-redux";
+import { getMovies, searchMovies, getGenres } from '../Actions/MoviesServer';
+import { connect, useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import MovieItemCard from './MovieItemCard';
 import store from '../store'
@@ -36,10 +36,13 @@ const Home = (props) => {
 
   const [searchQuery, setSearchQuery] = useState('');
 
+  const [allGenres, setAllGenres] = useState({})
 
+  const genreNames = []
 
   useEffect(() => {
     props.getMovies().then(m => setMovies(m))
+    props.getGenres().then(g => setAllGenres(g))
   }, [])
 
   function handlePageClick({ selected: selectedPage }) {
@@ -53,8 +56,30 @@ const Home = (props) => {
       props.searchMovies(searchQuery)
         .then(m => setMovies(m))
     }
-
     setSearchQuery('');
+  }
+
+  function getGenreNames(allGenres, res) {
+    const gNames = []
+    if (allGenres.hasOwnProperty('genres')) {
+      console.log("has property")
+      allGenres.genres.map(genre => {
+        if (res.hasOwnProperty("genre_ids")) {
+          res.genre_ids.map(id => {
+            if (Number(id) === Number(genre.id)) {
+              console.log("Found match" + gNames.indexOf(genre.name))
+
+              if (gNames.indexOf(genre.name) == -1) {
+                console.log(genre)
+                gNames.push(genre)
+              }
+
+            }
+          })
+        }
+      })
+    }
+    return gNames;
   }
 
   const pageCount = Math.ceil(movieData.length / PER_PAGE);
@@ -97,11 +122,11 @@ const Home = (props) => {
             movieData.slice(offset, offset + PER_PAGE)
               .map((res, index) => {
                 if (typeof res !== 'undefined') {
-                  return (
 
+                  return (
                     <WrapItem key={res.id}>
                       <Center key={res.id}>
-                        <MovieItemCard key={res.id} movie={res} width={300} />
+                        <MovieItemCard key={res.id} movie={res} width={300} genre={getGenreNames(allGenres, res)} />
                       </Center>
                     </WrapItem>
 
@@ -136,6 +161,7 @@ Home.propTypes = {
   // movie: PropTypes.object.isRequired,
   getMovies: PropTypes.func.isRequired,
   searchMovies: PropTypes.func.isRequired,
+  getGenres: PropTypes.func.isRequired,
 }
 Home.defaultProps = defaultProps;
 // #endregion
@@ -143,5 +169,5 @@ Home.defaultProps = defaultProps;
 
 export default connect(
   null,
-  { getMovies, searchMovies }
+  { getMovies, searchMovies, getGenres }
 )(Home);

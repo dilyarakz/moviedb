@@ -4,6 +4,7 @@ import getSearchedMoviesReducer from "./getSearchedMoviesReducer";
 import getMovieReducer from "./getMovieReducer";
 import getRecomMoviiesReducer from "./getRecomMoviesReducer"
 import favouriteReducer from "./favMoviereducer";
+import getGenresReducer from "./getGenresReducer";
 
 
 
@@ -13,5 +14,6 @@ export default combineReducers({
   search_movie: getSearchedMoviesReducer,
   movie: getMovieReducer,
   recommov: getRecomMoviiesReducer,
-  fmovies: favouriteReducer
+  fmovies: favouriteReducer,
+  genres: getGenresReducer
 });

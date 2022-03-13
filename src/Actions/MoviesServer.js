@@ -5,7 +5,8 @@ import {
   GET_MOVIE,
   GET_RECOM,
   ADD_FAV,
-  DEL_FAV
+  DEL_FAV,
+  GET_GENRES
 } from "./types";
 import { API_KEY } from "../api"
 
@@ -16,7 +17,7 @@ export const getMovies = () => async dispatch => {
 
   try {
 
-    console.log("Getting movies")
+    // console.log("Getting movies")
     const res = await axios.get(`${API_LINK}movie/top_rated?api_key=${API_KEY}`);
 
     dispatch({
@@ -35,7 +36,7 @@ export const searchMovies = (query) => async dispatch => {
 
   try {
     //Add logic if query has white space
-    console.log("Searching Movies")
+    // console.log("Searching Movies")
     const res = await axios.get(`${API_LINK}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&include_adult=false`);
 
     dispatch({
@@ -55,8 +56,8 @@ export const getMovie = (id) => async dispatch => {
 
   try {
 
-    console.log("GET MOVIE DETAILS" + id)
-    console.log("link: " + `${API_LINK}movie/${id}?api_key=${API_KEY}&language=en-US`)
+    // console.log("GET MOVIE DETAILS" + id)
+    // console.log("link: " + `${API_LINK}movie/${id}?api_key=${API_KEY}&language=en-US`)
     const res = await axios.get(`${API_LINK}movie/${id}?api_key=${API_KEY}&language=en-US`);
 
     dispatch({
@@ -75,8 +76,8 @@ export const getMovie = (id) => async dispatch => {
 export const getRecom = (id) => async dispatch => {
 
   try {
-    console.log("GET Recom" + id)
-    console.log("link: " + `${API_LINK}movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`)
+    // console.log("GET Recom" + id)
+    // console.log("link: " + `${API_LINK}movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`)
     const res = await axios.get(`${API_LINK}movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`);
 
     dispatch({
@@ -115,4 +116,23 @@ export const removeFav = (id) => (dispatch, getState) => {
   //   "fmovies",
   //   JSON.stringify(getState.fmovies)
   // )
+}
+
+
+export const getGenres = () => async dispatch => {
+
+  try {
+
+    const res = await axios.get(`${API_LINK}genre/movie/list?api_key=${API_KEY}&language=en-US`);
+
+    dispatch({
+      type: GET_GENRES,
+      payload: res.data
+    });
+
+    return res.data;
+
+  } catch (err) {
+
+  }
 }
