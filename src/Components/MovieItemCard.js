@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Image, Badge } from '@chakra-ui/react'
 import PropTypes from 'prop-types';
 import { StarIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 // #region constants
 
@@ -37,38 +38,22 @@ const MovieItemCard = (props) => {
     }
 
     return (
-      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-        <Image src={property.imageUrl} alt={property.imageAlt} style={{ width: "400px", objectPosition: "center" }} />
-
-        <Box p='6' style={{ width: "400px" }}>
-
-
-          <Box
-            mt='1'
-            fontWeight='semibold'
-            as='h5'
-            lineHeight='tight'
-            isTruncated
-          >
-            {property.title}
-          </Box>
-
-          <Box display='flex' mt='2' alignItems='center' justifyContent='center'>
-
-            {Array(5)
-              .fill('')
-              .map((_, i) => (
-                <StarIcon
-                  key={i}
-                  color={i < property.rating ? 'teal.500' : 'gray.300'}
-                />
-              ))}
-            <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-              {property.reviewCount} reviews
-          </Box>
+      <Link id="movieCard" to={`/movie/${props.movie.id}`}>
+        <Box m={2} borderWidth='1px' borderRadius='lg' w={props.width}>
+          <Image style={{ objectFit: 'cover' }} h='80%' w="100%" src={property.imageUrl} alt={property.imageAlt} />
+          <Box p='1' >
+            <Box
+              mt='1'
+              fontWeight='semibold'
+              as='h5'
+              lineHeight='tight'
+              isTruncated
+            >
+              {property.title}
+            </Box>
           </Box>
         </Box>
-      </Box>
+      </Link>
     )
   } else {
     return <div></div>

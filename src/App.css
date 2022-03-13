@@ -29,3 +29,19 @@
   color: rgb(198, 197, 202);
   border: 1px solid rgb(198, 197, 202);
 }
+
+#header-icon{
+  background: none;
+  padding: 1.5rem 3rem;
+}
+
+#header-icon:hover{
+  /* background-color: #FFE400; */
+  color: #FFE400;
+}
+
+
+#movieCard:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}

@@ -1,5 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Button, Input, Container, Flex, Spacer, Box, HStack, Wrap, WrapItem, Center, VStack } from '@chakra-ui/react'
+import {
+  Button,
+  Input,
+  Container,
+  Flex,
+  Spacer,
+  Box,
+  HStack,
+  Wrap,
+  WrapItem,
+  Center,
+  VStack
+} from '@chakra-ui/react'
 import { getMovies, searchMovies } from '../Actions/MoviesServer';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
@@ -7,13 +19,14 @@ import MovieItemCard from './MovieItemCard';
 import store from '../store'
 import ReactPaginate from 'react-paginate';
 import { SearchIcon } from "@chakra-ui/icons"
+import { Link } from "react-router-dom";
 
 
 const propTypes = {};
 
 const defaultProps = {};
 
-const PER_PAGE = 4;
+const PER_PAGE = 5;
 
 const Home = (props) => {
 
@@ -63,33 +76,58 @@ const Home = (props) => {
           ><SearchIcon /></Button>
         </Flex>
       </Box>
-      <Wrap p={20} spacing="5rem" alignItems="center">
-        {
-          movieData.slice(offset, offset + PER_PAGE)
-            .map((res, index) => {
-              if (typeof res !== 'undefined') {
-                return (
-                  <WrapItem key={res.id}>
-                    <Center key={res.id}>
-                      <MovieItemCard key={res.id} movie={res} />
-                    </Center>
-                  </WrapItem>
-                )
-              }
-            })
-        }
-        <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
-          pageCount={pageCount}
-          onPageChange={handlePageClick}
-          containerClassName={"pagination"}
-          previousLinkClassName={"pagination__link"}
-          nextLinkClassName={"pagination__link"}
-          disabledClassName={"pagination__link--disabled"}
-          activeClassName={"pagination__link--active"}
-        />
-      </Wrap>
+
+      <Container maxW='container.x1'>
+        <Box p={10}>
+          <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            containerClassName={"pagination"}
+            previousLinkClassName={"pagination__link"}
+            nextLinkClassName={"pagination__link"}
+            disabledClassName={"pagination__link--disabled"}
+            activeClassName={"pagination__link--active"}
+          />
+        </Box>
+
+        <Flex p={10} spacing="1rem" alignItems="center" justifyContent='center' style={{ overflowY: "hidden", hight: "70%" }}>
+          {
+            movieData.slice(offset, offset + PER_PAGE)
+              .map((res, index) => {
+                if (typeof res !== 'undefined') {
+                  return (
+
+                    <WrapItem key={res.id}>
+                      <Center key={res.id}>
+                        <MovieItemCard key={res.id} movie={res} width={300} />
+                      </Center>
+                    </WrapItem>
+
+                  )
+                }
+              })
+          }
+
+        </Flex>
+        <Box p={10}>
+          <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            containerClassName={"pagination"}
+            previousLinkClassName={"pagination__link"}
+            nextLinkClassName={"pagination__link"}
+            disabledClassName={"pagination__link--disabled"}
+            activeClassName={"pagination__link--active"}
+          />
+        </Box>
+      </Container>
+
+
+
     </>
   );
 }

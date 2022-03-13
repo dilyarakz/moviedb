@@ -6,9 +6,11 @@ import {
   Flex,
   Text,
   Button,
-  useDisclosure
+  useDisclosure,
+
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 // Note: This code could be better,
 // so I'd recommend you to understand how I solved and you could write yours better :)
@@ -19,6 +21,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 const Header = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
+
 
   return (
     <Flex
@@ -32,37 +35,24 @@ const Header = (props) => {
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-          MovieDB
+        <Link id="header-icon" to="/">
+          <Heading as="h1" size="lg" letterSpacing={"tighter"}>
+            MovieDB
         </Heading>
+        </Link>
+
       </Flex>
 
       <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
         <HamburgerIcon />
       </Box>
 
-      <Stack
-        direction={{ base: "column", md: "row" }}
-        display={{ base: isOpen ? "block" : "none", md: "flex" }}
-        width={{ base: "full", md: "auto" }}
-        alignItems="center"
-        flexGrow={1}
-        mt={{ base: 4, md: 0 }}
-      >
-        <Text>Docs</Text>
-        <Text>Examples</Text>
-        <Text>Blog</Text>
-      </Stack>
-
-      <Box
-        display={{ base: isOpen ? "block" : "none", md: "block" }}
-        mt={{ base: 4, md: 0 }}
-      >
-        <Button
-          variant="outline"
-          _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-        >
-          Create account
+      <Box style={{ marginRight: "2em" }}>
+        <Button style={{ background: "none" }}>
+          <Text style={{ marginRight: "0.7rem" }}>Favourite </Text>
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fillRule="currentColor" className="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+          </svg>
         </Button>
       </Box>
     </Flex>
