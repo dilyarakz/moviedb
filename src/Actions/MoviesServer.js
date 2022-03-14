@@ -8,11 +8,9 @@ import {
   DEL_FAV,
   GET_GENRES
 } from "./types";
-// import { API_KEY } from "../api"
-
-const API_KEY = process.env.REACT_APP_API_KEY;
 
 
+const API_KEY = "b203d4344dccb614502bdbfd2b849942";
 const API_LINK = "https://api.themoviedb.org/3/";
 
 

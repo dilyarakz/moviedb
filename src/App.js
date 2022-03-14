@@ -17,7 +17,7 @@ function App() {
       <ChakraProvider>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/movie/favourites" element={<Favourites />} />
         </Routes>
