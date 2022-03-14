@@ -32,14 +32,9 @@ const PER_PAGE = 5;
 const Home = (props) => {
 
   const [movieData, setMovies] = useState([]);
-
   const [currentPage, setCurrentPage] = useState(0);
-
   const [searchQuery, setSearchQuery] = useState('');
-
   const [allGenres, setAllGenres] = useState({})
-
-  const genreNames = []
 
   useEffect(() => {
     props.getMovies().then(m => setMovies(m))
@@ -83,6 +78,7 @@ const Home = (props) => {
     return gNames;
   }
 
+
   const pageCount = Math.ceil(movieData.length / PER_PAGE);
 
   return (
@@ -93,6 +89,7 @@ const Home = (props) => {
             id="searchInput"
             width='70%'
             bg='white'
+            color='black'
             placeholder='Search for movie here'
             onChange={e => setSearchQuery(e.target.value)}
             value={searchQuery}

@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react'
 import Home from './Components/Home';
+import Footer from './Components/Footer';
 import Header from './Components/Header';
 import { Routes, Route } from "react-router-dom";
 import MovieDetails from './Components/MovieDetails';
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/movie/:id" element={<MovieDetails />} />
           <Route exact path="/movie/favourites" element={<Favourites />} />
         </Routes>
+        <Footer />
       </ChakraProvider>
     </div>
   );

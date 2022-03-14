@@ -11,8 +11,8 @@ const defaultProps = {};
  */
 const Footer = () => {
   return (
-    <div>
-
+    <div style={{ background: "#272727", color: "#14A76C", padding: '5rem', marginTop: '0' }}>
+      Footer
     </div>
   );
 }

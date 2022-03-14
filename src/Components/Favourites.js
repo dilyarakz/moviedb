@@ -60,7 +60,7 @@ const Favourites = () => {
   }
 
   return (
-    <Container maxW='container.x1'>
+    <Container maxW='container.x1' h='100vh'>
       <Flex justifyContent='center' alignItems='center'>
         <Wrap p={10} spacing={8}>
           {
