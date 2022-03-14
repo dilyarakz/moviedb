@@ -77,10 +77,7 @@ const Favourites = () => {
             })
           }
         </Wrap>
-
       </Flex>
-
-
     </Container>
 
   );

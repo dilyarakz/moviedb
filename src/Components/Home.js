@@ -4,6 +4,7 @@ import {
   Input,
   Container,
   Flex,
+
   Spacer,
   Box,
   HStack,
@@ -18,7 +19,7 @@ import PropTypes from 'prop-types';
 import MovieItemCard from './MovieItemCard';
 import store from '../store'
 import ReactPaginate from 'react-paginate';
-import { SearchIcon } from "@chakra-ui/icons"
+import { SearchIcon, ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons"
 import { Link } from "react-router-dom";
 
 
@@ -102,22 +103,9 @@ const Home = (props) => {
         </Flex>
       </Box>
 
-      <Container maxW='container.x1'>
-        <Box p={10}>
-          <ReactPaginate
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
-            pageCount={pageCount}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            previousLinkClassName={"pagination__link"}
-            nextLinkClassName={"pagination__link"}
-            disabledClassName={"pagination__link--disabled"}
-            activeClassName={"pagination__link--active"}
-          />
-        </Box>
+      <Container p={20} maxW='container.x1' >
 
-        <Flex p={10} spacing="1rem" alignItems="center" justifyContent='center' style={{ overflowY: "hidden", hight: "70%" }}>
+        <Flex style={{ overflowY: "hidden", hight: "70%" }}>
           {
             movieData.slice(offset, offset + PER_PAGE)
               .map((res, index) => {
@@ -126,20 +114,18 @@ const Home = (props) => {
                   return (
                     <WrapItem key={res.id}>
                       <Center key={res.id}>
-                        <MovieItemCard key={res.id} movie={res} width={300} genre={getGenreNames(allGenres, res)} />
+                        <MovieItemCard key={res.id} movie={res} width={400} height={700} genre={getGenreNames(allGenres, res)} />
                       </Center>
                     </WrapItem>
-
                   )
                 }
               })
           }
-
         </Flex>
-        <Box p={10}>
+        <Box p={10} className="pagination-container">
           <ReactPaginate
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
+            previousLabel={<ArrowLeftIcon />}
+            nextLabel={<ArrowRightIcon />}
             pageCount={pageCount}
             onPageChange={handlePageClick}
             containerClassName={"pagination"}
@@ -149,6 +135,9 @@ const Home = (props) => {
             activeClassName={"pagination__link--active"}
           />
         </Box>
+
+
+
       </Container>
 
 

@@ -61,15 +61,15 @@ const MovieDetails = (props) => {
   function getGenreNames(allGenres, res) {
     const gNames = []
     if (allGenres.hasOwnProperty('genres')) {
-      console.log("has property")
+      // console.log("has property")
       allGenres.genres.map(genre => {
         if (res.hasOwnProperty("genre_ids")) {
           res.genre_ids.map(id => {
             if (Number(id) === Number(genre.id)) {
-              console.log("Found match" + gNames.indexOf(genre.name))
+              // console.log("Found match" + gNames.indexOf(genre.name))
 
               if (gNames.indexOf(genre.name) == -1) {
-                console.log(genre)
+                // console.log(genre)
                 gNames.push(genre)
               }
 
@@ -84,15 +84,16 @@ const MovieDetails = (props) => {
 
   return (
     <Container maxW='container.x1' align='center'>
-      <Flex maxW='85%' p={10} style={{ margin: 10 }}>
-        <VStack w='40%' h='full' align="center" bgcolor='red' justifyContent='center'>
-          <Image maxW='400px' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
-        </VStack>
+      <Flex className="details-main-container">
 
-        <VStack w='60%' h='full' p={10} spacing={10} alignItems="flex-start" justifyContent='center' >
-          <Heading>{movie.title}</Heading>
-          <Heading>Overview</Heading>
-          <Heading>{movie.release_date}</Heading>
+        <Box w='40%' h='full' align="center" bgcolor='red' justifyContent='center'>
+          <Image maxW='400px' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+        </Box>
+
+        <Box w='50%' className="details-info">
+          <Heading as='h1' size='3xl' className="details-title">{movie.title}</Heading>
+
+          <Heading as='h6' size='md' className="details-release-date"> {movie.release_date}</Heading>
           <Heading>{movie.language}</Heading>
           <Heading>{movie.popularity}</Heading>
           {movie.hasOwnProperty("genres") ? movie.genres.map(g => <p key={g.id}>{g.name}</p>) : <></>}
@@ -124,7 +125,7 @@ const MovieDetails = (props) => {
 
           }
 
-        </VStack>
+        </Box>
       </Flex>
 
       <Flex maxW='85%' p={10} style={{ margin: 10 }}>
@@ -132,13 +133,13 @@ const MovieDetails = (props) => {
         <Flex maxH={400} style={{ overflowX: "scroll", border: "2px solid white" }}>
           {
             recomMovies.map(movie => {
-              return (<MovieItemCard key={movie.id} movie={movie} width={300} genre={getGenreNames(allGenres, movie)} />)
+              return (<MovieItemCard key={movie.id} movie={movie} width={300} height={650} genre={getGenreNames(allGenres, movie)} />)
             })
           }
         </Flex>
 
       </Flex>
-    </Container>
+    </Container >
   );
 }
 

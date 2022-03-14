@@ -8,10 +8,12 @@ import {
   DEL_FAV,
   GET_GENRES
 } from "./types";
-import { API_KEY } from "../api"
+//import { API_KEY } from "../api"
 
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const API_LINK = "https://api.themoviedb.org/3/";
+
 
 export const getMovies = () => async dispatch => {
 
