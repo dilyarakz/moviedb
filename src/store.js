@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./Reducers";
-
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initalState = {};
 const middleware = [thunk];
 
@@ -13,17 +13,17 @@ if (window.navigator.userAgent.includes("Chrome")) {
   store = createStore(
     rootReducer,
     initalState,
-    compose(
+    composeEnhancers(
       applyMiddleware(...middleware),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__()
+      // window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      // window.__REDUX_DEVTOOLS_EXTENSION__()
     )
   );
 } else {
   store = createStore(
     rootReducer,
     initalState,
-    compose(applyMiddleware(...middleware))
+    composeEnhancers(applyMiddleware(...middleware))
   );
 }
 

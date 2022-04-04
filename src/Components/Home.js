@@ -58,14 +58,12 @@ const Home = (props) => {
   function getGenreNames(allGenres, res) {
     const gNames = []
     if (allGenres.hasOwnProperty('genres')) {
-      console.log("has property")
       allGenres.genres.map(genre => {
         if (res.hasOwnProperty("genre_ids")) {
           res.genre_ids.map(id => {
             if (Number(id) === Number(genre.id)) {
-              console.log("Found match" + gNames.indexOf(genre.name))
 
-              if (gNames.indexOf(genre.name) == -1) {
+              if (gNames.indexOf(genre.name) === -1) {
                 console.log(genre)
                 gNames.push(genre)
               }

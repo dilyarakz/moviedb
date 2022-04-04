@@ -1,60 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import PropTypes from 'prop-types';
-import { StarIcon } from "@chakra-ui/icons";
+
 import { Link } from "react-router-dom";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { getMovie, getRecom, addFav, removeFav } from '../Actions/MoviesServer';
+import {  useDispatch, useSelector } from "react-redux";
+import {addFav, removeFav } from '../Actions/MoviesServer';
 import {
   Button,
-  Input,
-  Container,
   Flex,
   Box,
-  Spacer,
-  VStack,
-  HStack,
-  Wrap,
-  WrapItem,
-  Center,
   List,
   ListItem,
   Text,
   Image,
-  Heading
+
 } from '@chakra-ui/react'
-import store from '../store'
-// #region constants
 
-// #endregion
 
-// #region styled-components
-
-// #endregion
-
-// #region functions
-
-// #endregion
-
-// #region component
 const propTypes = {};
 
 const defaultProps = {};
 
-/**
- * 
- */
 const MovieItemCard = (props) => {
 
 
   const dispatch = useDispatch();
 
-  console.log(props.movie)
-  console.log(props.genre)
 
 
-
-  // console.log(allGenresID)
 
   const addFavMovie = (e) => {
     e.preventDefault();
