@@ -14,20 +14,17 @@ import {
   VStack
 } from '@chakra-ui/react'
 import { getMovies, searchMovies, getGenres } from '../Actions/MoviesServer';
-import { connect, useSelector } from "react-redux";
+import { connect} from "react-redux";
 import PropTypes from 'prop-types';
 import MovieItemCard from './MovieItemCard';
-import store from '../store'
 import ReactPaginate from 'react-paginate';
 import { SearchIcon, ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons"
-import { Link } from "react-router-dom";
 
 
-const propTypes = {};
 
 const defaultProps = {};
 
-const PER_PAGE = 5;
+const PER_PAGE = 10;
 
 const Home = (props) => {
 
@@ -64,7 +61,7 @@ const Home = (props) => {
             if (Number(id) === Number(genre.id)) {
 
               if (gNames.indexOf(genre.name) === -1) {
-                console.log(genre)
+     
                 gNames.push(genre)
               }
 
@@ -109,7 +106,7 @@ const Home = (props) => {
                   return (
                     <WrapItem key={res.id}>
                       <Center key={res.id}>
-                        <MovieItemCard key={res.id} movie={res} width={400} height={700} genre={getGenreNames(allGenres, res)} />
+                        <MovieItemCard key={res.id} movie={res} width={'20rem'} height={'25rem'} genre={getGenreNames(allGenres, res)} />
                       </Center>
                     </WrapItem>
                   )
@@ -130,13 +127,7 @@ const Home = (props) => {
             activeClassName={"pagination__link--active"}
           />
         </Box>
-
-
-
       </Container>
-
-
-
     </>
   );
 }

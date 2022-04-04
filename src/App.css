@@ -1,6 +1,6 @@
 .App{
   text-align: center;
-  background-color: black;
+ 
   color: white;
 }
 
@@ -44,7 +44,47 @@
 }
 
 #movieCard {
-  background-color: #272727
+  background-color: #272727;
+  position: relative;
+}
+
+/* #movieCard:hover+#cardFavButton {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color: #555;
+} */
+
+ #cardFavButton,
+ .card-title{
+   display: none;
+       background-color: #555;
+ }
+#movieCard:hover #cardFavButton {
+    display: block;
+    position: absolute;
+    width: 3rem;
+    top: 10%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+}
+
+
+#movieCard:hover .card-title{
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: rgb(213, 233, 103);
+  color: black;
 }
 
 #heartIcon:hover{

@@ -130,12 +130,12 @@ const MovieDetails = (props) => {
         </Box>
       </Flex>
 
-      <Flex maxW='100%' p={10} style={{ margin: 10 }}>
+      <Flex maxW='100%'  p={2}  style={{ overflowX: "scroll" }}>
 
-        <Flex maxH={600} style={{ overflowX: "scroll" }}>
+        <Flex minH={'20rem'} >
           {
             recomMovies.map(movie => {
-              return (<MovieItemCard key={movie.id} movie={movie} width={300} height={600} genre={getGenreNames(allGenres, movie)} />)
+              return (<MovieItemCard key={movie.id} movie={movie} width={'10rem'} height={'14rem'} genre={getGenreNames(allGenres, movie)} />)
             })
           }
         </Flex>

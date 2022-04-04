@@ -49,7 +49,7 @@ const Favourites = () => {
                 return (
                   <WrapItem key={res.id}>
                     <Center key={res.id}>
-                      <MovieItemCard key={res.id} movie={res} width={300} genre={getGenreNames(allGenres, res)} />
+                      <MovieItemCard key={res.id} movie={res} height={'30rem'} width={'20rem'} genre={getGenreNames(allGenres, res)}/>
                     </Center>
                   </WrapItem>
                 )
