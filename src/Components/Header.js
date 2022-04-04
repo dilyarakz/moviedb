@@ -4,7 +4,7 @@ import {
   Heading,
   Flex,
   Button,
-
+  Image, SvgIcon
 
 } from "@chakra-ui/react";
 
@@ -33,10 +33,8 @@ const Header = (props) => {
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Link id="header-icon" to="/">
-          <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-            MovieDB
-          </Heading>
+        <Link  id="header-icon" to="/">
+          <img style={{background: `url(blue_short.svg)}`}} src="blue_short.svg" alt="The Movie Database (TMDB)" width="154" height="20"/> 
         </Link>
 
       </Flex>
